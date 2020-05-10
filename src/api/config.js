@@ -7,6 +7,7 @@ export const suggestSearch ='/search/suggest' // 搜索建议
 export const search = '/search' // 搜索关键词
 export const albumDetail = '/playlist/detail' // 获取歌单详情
 export const songLyric =  '/lyric' // 获取歌词
+export const checkSong =  '/check/music' // 查看歌曲是否可用
 export  const  recommendlist ="/personalized" //推荐歌单
 export const   newsong="/personalized/newsong"//推荐新歌
 export const   recommendmv='/personalized/mv' //推荐mv

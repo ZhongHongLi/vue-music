@@ -7,7 +7,11 @@ const  getters={
     FULL_SCREEN: state => state.fullScreen,
     AUDIO_ING_INDEX: state => state.audioIngIndex, //索引
     AUDIO_LIST: state => state.audioList,
-
+    //返回当前播放歌曲对象的信息
+    CURRENT_INDEX:state=>state.audioIngIndex,
+    AUDIO_ING_SONG:state=>{
+        return  state.audioList[state.audioIngIndex]||{}
+    }
 }
 
 export default  getters

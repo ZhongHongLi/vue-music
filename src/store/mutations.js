@@ -15,7 +15,6 @@ export default{
    },
    //设置当前播放状态
    [SET_PLAY_SATE](state,status){
-       console.log(status)
        state.palyStatus=status
    },
     /**
@@ -27,11 +26,9 @@ export default{
   //设置当前播放的索引
   [SET_AUDIO_INDEX](state,index){
     state.audioIngIndex=index
-    console.log(state.audioIngIndex)
   },
   //设置播放列表的信息
   [SET_AUDIO_LIST](state,list){
-    console.log(list)
     state.audioList=list
   }
 }

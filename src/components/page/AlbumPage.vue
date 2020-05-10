@@ -37,8 +37,9 @@
         <van-icon name="arrow-left"  color="#fff" size="30px" @click="backgo"/>
       </div>
      <div class="right-info">
-         <div class="songs-title">{{palyerinfo.name}}</div>
-      <div v-for="(item,index) in palyerinfo.ar" :key="index" style="font-size:0.3rem;color:#fff;text-aligin:center" >{{item.name}}</div>
+         <div class="songs-title">{{name}}</div>
+      <!-- <div v-for="(item,index) in palyerinfo.ar" :key="index" style="font-size:0.3rem;color:#fff;text-aligin:center" >{{item.name}}</div> -->
+      <div style="font-size:0.3rem;color:#fff;text-aligin:center">{{SongName}}</div>
      </div>
    </div>
    <!-- 中间的圆 -->
@@ -80,17 +81,18 @@
     <function-button  
     @play="toogleplay"
     @next="nextSong"
+    @prev="prevSong"
     >
 
     </function-button>
 
-    <smallAudio
+    <!-- <smallAudio
    v-show="issmallshow"
      :imgUrl="imgUrl"
        :name="name"
        :lyric="lyric"
        :ar="ar"
-    ></smallAudio>
+    ></smallAudio> -->
   </div>
   </div>
 </template>
@@ -148,7 +150,9 @@ export default {
     ar:[],
     scrollHeight:0,
     issmallshow:false,
-    readySong:false
+    readySong:false,
+    conSong:true,
+    SongName:''
     }
   },
   computed: {
@@ -158,7 +162,8 @@ export default {
        state:'PLAY_STATUS',
        isFull:'FULL_SCREEN',
        index:'AUDIO_ING_INDEX',
-       list:'AUDIO_LIST'
+       list:'AUDIO_LIST',
+       audioSong:'AUDIO_ING_SONG'
     })
   },
     ...mapMutations({
@@ -193,7 +198,29 @@ export default {
    this.getdetail(rankingid)
    }
   },
+  watch:{
+  audioSong(val,oldval){
+    this.$nextTick(()=>{
+      this._checkSong(val.id)
+    })
+    // console.log(val)
+    this.ar=val
+    this.imgUrl=val.al.picUrl
+    this.name=val.al.name
+    this.SongName=val.ar[0].name
+    this.allTime=val.dt
+  }
+  },
   methods: {
+ async  _checkSong(id){
+   const {data:res}=await api.checkSongFn(id)
+   if(res.success){
+   this.conSong=true
+   //获取当前音乐
+   this._getSongUrl(id)
+   this.geTslyrics(id)
+   }
+  },
     //滚动事件
   //点击显示隐藏歌词跟转盘
    setPlayingShow(a){
@@ -214,12 +241,9 @@ export default {
     },
     //排行榜的id
     async getdetail(rankingid){
-    // this.idx=this.$route.query.idx
     const {data:res}= await  this.$http.get(`top/list?idx=${rankingid}`)
     this.detailtoplist=res.playlist
-    // this.idxComId=res.playlist.id
     this.rankingid=res.playlist.id
-  
     //头部的数据
     this.songlist=res.privileges
     this.songdeial=res.playlist
@@ -227,11 +251,14 @@ export default {
     },
     //点击当前歌曲
 	async add(id,item,index){
+    console.log(item.ar)
   this.ar=item.ar
+  console.log(this.ar)
   this.palyerinfo=item
+  console.log(this.palyerinfo)
   this.name=this.palyerinfo.name
-  console.log(index)
-  console.log(this.detailtoplist.tracks)
+  console.log(this.name)
+  this.SongName=this.palyerinfo.ar[0].name
   //调用vuex action中的方法
   this.selectPlay({
     list:this.detailtoplist.tracks,
@@ -244,17 +271,17 @@ export default {
   this.isplayshow=!this.isplayshow
    this.$store.commit('SET_PLAY_SATE',false)
   //请求点击的当前歌曲
+  this._getSongUrl(id)
+  this.geTslyrics(id)
+	},
+async  _getSongUrl(id){
 	const {data:res}=await	this.$http.get('song/url?id='+id)
    if(res.code==200){
      //这是歌曲
        this.onesong=res.data[0]
        this.audioTimeUpdate()
    }
-   this.geTslyrics(id)
-	},
-  // showIdxPage(id){
-  //   console.log(id)
-  // },
+ },
   backgo(){
     this.isplayshow=!this.isplayshow
     this.issmallshow=!this.issmallshow
@@ -267,7 +294,6 @@ export default {
     //这个是获取音频标签
     const audio=this.$refs.audio
     this.aduioObject=audio
-    // console.log(this.aduioObject)
     let minutes=Math.floor(audio.currentTime/60)
     let  seconds=Math.floor(audio.currentTime-minutes*60)
     let minteVal
@@ -381,9 +407,6 @@ export default {
  },
    toogleplay(){
      //点击了把状态赋值给他做暂停播放的动画
-        console.log(this.state)
-    // this.toPlay()
-    // this.toPause()
     if(this.state==false){
           this.$store.commit('SET_PLAY_SATE',true)
           this.toPause()
@@ -398,13 +421,15 @@ export default {
     toPause(){
       this.$refs.audio.pause()
     },
+    //上一首
+    prevSong(){
+     let nowIndex=this.index-1
+     if(nowIndex==-1){
+       nowIndex=this.list.length-1
+     }
+     this.$store.commit('SET_AUDIO_INDEX',nowIndex)
+    },
     nextSong(){
-      // console.log(this.readySong)
-      // if(!this.readySong){
-      //   return 
-      // }
-      console.log(this.index)
-       console.log(22222222222222)
      let nowIndex=this.index+1
      //切换到最后一首
     if(nowIndex==this.list.length){

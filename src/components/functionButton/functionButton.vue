@@ -1,7 +1,7 @@
 <template>
  <div class="warper-play">
    <span class="iconfont  icon-xunhuan"></span>
-     <span class="iconfont icon-shangyishou-yuanshijituantubiao"></span>
+     <span class="iconfont icon-shangyishou-yuanshijituantubiao"  @click="prev"></span>
        <span class="iconfont   font-big"  @click="play"  :class="{iconbofang:isPlay,iconzanting:!isPlay}"></span>
          <span class="iconfont  icon-xiayishou-yuanshijituantubiao"  @click="next"></span>
          <span class="iconfont  icon-liebiao"></span>
@@ -20,6 +20,7 @@ export default {
  },
   watch: {
    isPlay(val){
+     console.log(val)
    }
  },
  computed:{
@@ -29,11 +30,14 @@ export default {
  },
  methods: {
   play(){
+    console.log(this.clickstatus)
    this.$emit('play',this.clickstatus)
   },
   next(){
-    console.log('我点了下一首')
     this.$emit('next')
+  },
+  prev(){
+    this.$emit('prev')
   }
  }
 }
