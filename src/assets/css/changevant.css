@@ -1,0 +1,41 @@
+.van-tabbar{
+    background: rgba(0,0,0,10) !important;
+    opacity:0.4;
+    filter:alpha(opacity=40);
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+.van-grid{
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+}
+
+.custom-button {
+    background-color: red !important;
+    /* border-radius: 100px; */
+  }
+
+  .van-slider__button{
+      width: 8px !important;
+      height: 8px !important;
+  }
+
+  .van-popup--bottom.van-popup--round {
+    /* border-radius: 0.53333rem 0.53333rem 0 0; */
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    /* background: red; */
+    box-shadow: 0px 10px 10px rgb(0,0,0.5);
+}
+
+
+.van-popup--bottom.van-popup--round {
+    border-radius: 1rem 1rem 0 0;
+}
+
+
+ .van-radio__icon  .van-radio__icon--checked .van-icon{
+    background-color: none !important; 
+    border-color: none !important;
+}
