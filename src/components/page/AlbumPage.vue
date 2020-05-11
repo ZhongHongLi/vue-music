@@ -26,7 +26,12 @@
 
 
 	<div class="audiobox" v-show="flag" :data="onesong">
-	 <audio :src="onesong.url" autoplay    ref="audio"></audio>
+	 <audio
+    :src="onesong.url"
+    autoplay 
+    ref="audio"
+    @canplay="ready"
+    ></audio>
 	</div>
    <!-- 播放的页面的显示 默认是隐藏的 -->
   <div class="play-ying" v-if="isplayshow">
@@ -108,6 +113,7 @@ import functionButton  from '../../components/functionButton/functionButton'
 import smallAudio  from '../../components/smallaudio/smallAudio'
 import  songList   from  '../../components/songlistPage/songlist'
 import  songListPage   from  '../../components/songlistPage/songlistpage'
+import { Toast } from 'vant';
 export default {
 
   data() {
@@ -203,23 +209,31 @@ export default {
     this.$nextTick(()=>{
       this._checkSong(val.id)
     })
-    // console.log(val)
     this.ar=val
     this.imgUrl=val.al.picUrl
-    this.name=val.al.name
+    this.name=val.name
     this.SongName=val.ar[0].name
     this.allTime=val.dt
   }
   },
   methods: {
- async  _checkSong(id){
-   const {data:res}=await api.checkSongFn(id)
-   if(res.success){
-   this.conSong=true
-   //获取当前音乐
-   this._getSongUrl(id)
-   this.geTslyrics(id)
-   }
+    _checkSong(id){
+    api.checkSongFn(id).then(res=>{
+      const data=res.data
+        if(data.success){
+          this.conSong=true
+           this._getSongUrl(id)
+           this.geTslyrics(id)
+        }
+    })
+    .catch(err=>{
+      //不能播放歌曲的时候选择下一首
+       this.conSong=false
+       this.readySong=true
+       Toast('此音乐要收费,请换一首');
+       this.readySong=true
+    })
+
   },
     //滚动事件
   //点击显示隐藏歌词跟转盘
@@ -251,13 +265,9 @@ export default {
     },
     //点击当前歌曲
 	async add(id,item,index){
-    console.log(item.ar)
   this.ar=item.ar
-  console.log(this.ar)
   this.palyerinfo=item
-  console.log(this.palyerinfo)
   this.name=this.palyerinfo.name
-  console.log(this.name)
   this.SongName=this.palyerinfo.ar[0].name
   //调用vuex action中的方法
   this.selectPlay({
@@ -415,6 +425,18 @@ async  _getSongUrl(id){
        this.toPlay()
     }
     },
+    /*
+    当浏览器可以播放资源时
+    */
+   ready(){
+   this.readySong=true
+   },
+   /*
+   当资源加载期间发生错误时
+   */
+   error(){
+   this.readySong=true
+   },
     toPlay(){
       this.$refs.audio.play()
     },
@@ -423,19 +445,30 @@ async  _getSongUrl(id){
     },
     //上一首
     prevSong(){
+      if(!this.readySong){
+        return 
+      }
+      //改变的播放的状态
+       this.$store.commit('SET_PLAY_SATE',false)
      let nowIndex=this.index-1
      if(nowIndex==-1){
        nowIndex=this.list.length-1
      }
      this.$store.commit('SET_AUDIO_INDEX',nowIndex)
+     this.readySong=false
     },
     nextSong(){
+      if(!this.readySong){
+        return 
+      }
+      this.$store.commit('SET_PLAY_SATE',false)
      let nowIndex=this.index+1
      //切换到最后一首
     if(nowIndex==this.list.length){
       nowIndex=0
     }
     this.$store.commit('SET_AUDIO_INDEX',nowIndex)
+    this.readySong=false
     },
    ...mapActions(['selectPlay'])
   },

@@ -20,7 +20,6 @@ export default {
  },
   watch: {
    isPlay(val){
-     console.log(val)
    }
  },
  computed:{
@@ -30,7 +29,6 @@ export default {
  },
  methods: {
   play(){
-    console.log(this.clickstatus)
    this.$emit('play',this.clickstatus)
   },
   next(){
