@@ -12,12 +12,12 @@
 
        </van-popup>
     <nav class="nav-box">
-      <div class="nav-left">
+      <!-- <div class="nav-left">
         <van-cell  @click="showPopup">
         <van-icon name="wap-nav" size="25px" />
         </van-cell>
-      </div>
-      <ul class="nav-center">
+      </div> -->
+      <!-- <ul class="nav-center">
         <li>
           <a href="javascript:;">我的</a>
         </li>
@@ -30,23 +30,33 @@
         <li>
           <a href="javascript:;">视频</a>
         </li>
-      </ul>
-       <div class="nav-right">
-        <van-icon name="search" size="25px"  @click="seachrbtn" />
-      </div> 
+      </ul> -->
+       <!-- <div class="nav-right">
+        <van-icon name="search" size="25px"   />
+      </div>  -->
+      <div class="left-icon"><span class="iconfont icon-maikefeng" ></span></div>
+       <!-- <input type="text" class="input-bg"  @click="seachrbtn"  :placeholder="input"> -->
+       <van-search
+       class="input-bg"
+      :placeholder="input"
+      @click="seachrbtn"
+    background="#4fc08d"
+/>
+       <div class="right-icon"><span class="iconfont icon-pingguoerji1" ></span></div>
     </nav> 
   </div>
 </template>
 
 <script>
+
 export default {
  data() {
  return {
-   show: false
+   show: false,
+   input:localStorage.getItem('defalut')
  }
  },
  created(){
-
  },
  methods: {
 showPopup(){
@@ -74,8 +84,6 @@ loginrouter(){
   line-height: 1rem;
   font-size: 0.6rem;
 }
-
-
  .van-icon-search{
    height: 1rem;
    line-height: 1rem;
@@ -84,8 +92,10 @@ loginrouter(){
 
 .nav-wrapper {
   padding: 0px 10px;
-  height: 50px;
+  height: 40px;
   box-sizing: border-box;
+  overflow: hidden;
+  margin-bottom: 10px;
    .van-popup{
   .loging_contetop{
     text-align: center;
@@ -111,38 +121,40 @@ loginrouter(){
   .nav-box {
   width: 100%;
   display: flex;
-  height: 1rem;
-  line-height: 1rem;
-  padding: 0.15rem 0;
-    .nav-left {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-   
-    .nav-center {
-      display: flex;
-      flex: 8;
-      color: #999;
-      font-size: 0.4rem;
-      li {
-        width: 25%;
-        text-align: center;
-        a {
-           color: #999;
-        }
-      }
-    }
-    .nav-right {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    }
+  height: 0.8rem;
+  line-height: 0.8rem;
+  padding: 0.3rem  0.15rem 0 0.15rem;
   }
 }
 
+.input-bg{
+  border-radius: 20px;
+  flex: 1 !important;
+}
+
+
+.left-icon{
+  margin-right: 10px;
+  font-size: 0.5rem;
+}
+
+.right-icon{
+  margin-left: 10px;
+    font-size: 0.5rem;
+}
+
+ /deep/ .van-search{
+ background: #f7f8fa !important;
+}
+
+input::-webkit-input-placeholder {
+       /* placeholder颜色  */
+      color: salmon;
+        /* placeholder字体大小  */
+     font-size: 12px;
+       /* placeholder位置  */
+      text-align: center;
+     }
 
 </style>
 

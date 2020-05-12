@@ -56,8 +56,11 @@
     }
     ul {
       font-size: 0.35rem;
+      display: flex;
+      flex-wrap: wrap;
       li {
         margin: 0.5rem 0;
+        flex: 50%;
         display: flex;
         align-items: center;
         &:nth-of-type(1) > .num {
@@ -67,6 +70,9 @@
           color: red;
         }
         &:nth-of-type(3) > .num {
+          color: red;
+        }
+         &:nth-of-type(4) > .num {
           color: red;
         }
         > .num {
@@ -86,7 +92,9 @@
             height: 0.3rem;
             margin-left: 0.2rem;
           }
+        
         }
+         
         .songinfo {
           font-size: 0.2rem;
           color: #aaa;

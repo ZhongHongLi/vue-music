@@ -16,6 +16,7 @@ import friendS from '@/components/mybuttonTab/friendS'
 import  comMents from  '@/components/commetspage/commetspage'
 import  mvPage from  '@/components/mvPage/index.vue'
 import logoinPageButton from '@/components/logoin/logoinPageButton'
+import Recommenday from '@/components/home/Recommeday'
 Vue.use(VueRouter)
 
 const routes = [
@@ -35,7 +36,8 @@ const routes = [
   {path:'/friends',component:friendS},
   {path:'/comments',component:comMents,name:'comments'},
   {path:'/mvpage',component:mvPage,name:'mvpage'},
-  {path:'/logoginbtn',component:logoinPageButton}
+  {path:'/logoginbtn',component:logoinPageButton},
+  {path:'/recommenday',component:Recommenday}
 ]
 
 const router = new VueRouter({

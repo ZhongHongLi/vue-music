@@ -6,7 +6,7 @@
 			<div class="left"  @click="add(id,item,num)">
 				<div class="indexspan">{{num+1>9?num+1:"0"+(num+1)}}</div>
 			 <div class="left-div">
-			  <p class="songtitle-p">{{songName}}</p>
+			  <p class="songtitle-p" v-html="songName"></p>
 			  <p class="songtitle-p1" >
 			  <span v-for="(item,index) in artists" :key="index">{{item.name}}-</span>
 			  <span class="text-more">{{songName}}</span>
@@ -22,8 +22,8 @@
 	</div>
 
 	<!-- 下面的弹出层 -->
-
-<!-- <van-popup v-model="showbox"  position="bottom"  :style="{ height: '40%' }"  :overlay="overlay"  round >内容</van-popup> -->
+<!-- 
+<van-popup v-model="showbox"  position="bottom"  :style="{ height: '40%' }"  :overlay="overlay"  round >内容</van-popup> -->
 
 	</div>
 </template>
@@ -71,7 +71,6 @@ components:{
  },
  methods: {
      add(id,item,num){
-		 console.log(id,item,num)
 	   this.$emit('clickid',id,item,num)
 	 },
 	 showPopup(id){

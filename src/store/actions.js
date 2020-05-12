@@ -10,7 +10,6 @@ export  default{
         //调用设置当前播放列表的信息
         commit(SET_AUDIO_LIST,list)
         //设置当前播放是第几个，索引值
-        console.log(index)
         commit(SET_AUDIO_INDEX,index)
         //设置当前播放状态
         commit(SET_PLAY_SATE,true)

@@ -55,21 +55,17 @@ export default {
     
  },
  inputValue:function(newval){
-     console.log(newval)
     //  console.log(this.$route.params.id)
      if(newval!=this.$route.params.id){
          newval=this.$route.params.id
-         console.log(newval)
          this.inputValue=newval
      }
 
       if(this.inputValue===undefined){
-      console.log(this.inputValue)
       this.inputValue=localStorage.getItem('defalut')
   }
  },
  valuechange:function(newval){
-     console.log(newval)
      if(!newval){
          this.isShow=false
      }
@@ -86,7 +82,6 @@ export default {
  },
  //获取焦点
  onfocus(e){
- console.log(e.target.placeholder)
  this.valuechange=e.target.placeholder
  },
     //文本框的默认搜索关键字
@@ -105,7 +100,6 @@ export default {
              const{data:res}=await api.suggestSearchFn(valuechange)
       if(res.code==200){
           this.serachList=res.result.allMatch
-          console.log(this.serachList)
           this.isShow=true
           //搜索内容获取
           this.setSearchList(this.valuechange)
@@ -128,7 +122,6 @@ export default {
     },
     //点击跳转
     searchsong(key){
-        console.log(key)
      this.$router.push(`/searchsonglist/${key}`)
     }
  }

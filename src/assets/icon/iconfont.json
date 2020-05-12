@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "10408779",
+      "name": "麦克风",
+      "font_class": "maikefeng",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "7440256",
+      "name": "日历",
+      "font_class": "rili1",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
       "icon_id": "1203556",
       "name": "QQ",
       "font_class": "linedesign-17",

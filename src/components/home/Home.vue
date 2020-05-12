@@ -13,7 +13,7 @@
  <div class="tbs">
 <ul class="tab_ui">
   <li  v-for="(item,index) in  tabdata" :key="index"  @click="clickgoto(item.id)">
-     <span :class="item.classnames"></span>
+     <span :class="item.classnames"  style="position: relative; "><i class="iconrili">{{item.text=='每日推荐'?today:''}}</i></span>
      <div class="font4">{{item.text}}</div>
    </li>
 </ul>
@@ -32,6 +32,7 @@
 import Navbar from '../nanbar/Navbar'
 import  buttomTabbar  from '../buttomTabbar/buttomTabbar'
 import  homeSonglist  from  '../homesonglist/homeSonglist'
+import  serachInput  from  '../search/serachInput/serachInput'
 
 export default {
   name:'home',
@@ -51,10 +52,16 @@ export default {
   components:{
   Navbar,
   buttomTabbar,
-  homeSonglist
+  homeSonglist,
+  serachInput
   },
   created() {
   this.getbanner()
+  },
+  computed: {
+    today(){
+      return new Date().getDate()
+      }
   },
   methods: {
   async getbanner(){
@@ -64,7 +71,7 @@ export default {
   clickgoto(id){
    switch(id){
        case 1:
-       this.$router.push('/home')
+       this.$router.push('/recommenday')
        break;
        case 2:
        this.$router.push('/home')
@@ -77,7 +84,6 @@ export default {
          break;
          case 5:
          this.$router.push('/home')
-
    }
   }
   }
@@ -142,6 +148,17 @@ export default {
        border-radius: 50%;
         }
       }
+    }
+
+
+    .iconrili{
+      position: absolute;
+      left: 50%;
+      font-size: 10px;
+      transform: translateX(-50%);
+      font-size: 0.1rem;
+      top:4px;
+      font-weight: 600;
     }
 
 </style>
