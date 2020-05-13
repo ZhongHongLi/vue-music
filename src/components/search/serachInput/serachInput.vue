@@ -1,9 +1,10 @@
 <template>
 <div class="srach_content">
  <div class="topseach-box">
-<van-icon name="arrow-left"  @click="arrback"/>
+<van-icon name="arrow-left"  @click="arrback"  style="font-size:0.8rem"  />
 
 <van-search
+  class="search"
   :placeholder="inputValue"
   use-left-icon-slot=true
   @input="searchchange"
@@ -13,7 +14,7 @@
  @focus="onfocus($event)"
 />
 
-<van-icon name="friends-o" />
+<van-icon name="friends-o"   style="font-size:0.8rem"  @click="gosingerPage"/>
  </div>
 
 <!-- 搜索列表的信息 -->
@@ -75,6 +76,9 @@ export default {
  arrback(){
       this.$router.go(-1)
  },
+ gosingerPage(){
+  this.$router.push('/singerpage')
+ },
  //点击清除
  clear(){
 //    let clear=false
@@ -132,7 +136,7 @@ export default {
 .srach_content{
 .van-search{
     padding: 0;
-    margin: 0 0.2rem;
+    margin: 0 10px;
     width: 80%;
 }
 .van-search__content{
@@ -142,6 +146,9 @@ export default {
     padding: 0.3rem 0.1rem;
     display: flex;
     align-items: center;
+}
+.search{
+    flex:1 !important;
 }
 
 .songinfo{

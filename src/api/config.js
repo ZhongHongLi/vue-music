@@ -18,3 +18,9 @@ export const  allMv='/mv/detail' //获取mv数据
 export const  logins='/login/cellphone' //手机登录
 export const  phonevadate="/captcha/sent"  //手机号验证
 export const  sendvadate="/captcha/verify" //验证验证码跟手机是否一致
+
+export const singerClass =  '/artist/list' // 歌手分类
+
+export const djbanner='/dj/banner' //电台轮播
+export const radioRecommendations =  '/dj/today/perfered' // 电台推荐数据
+export const djClassification = '/dj/catelist' // 电台分类

@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2380649",
+      "name": "排行",
+      "font_class": "paihang",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "2380661",
+      "name": "书",
+      "font_class": "shu",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "6400633",
+      "name": "皇冠",
+      "font_class": "weibiaoti--",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "6550243",
+      "name": "书本",
+      "font_class": "shuben",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "13876767",
+      "name": "分类",
+      "font_class": "fenlei",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
       "icon_id": "10408779",
       "name": "麦克风",
       "font_class": "maikefeng",

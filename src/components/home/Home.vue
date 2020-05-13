@@ -1,30 +1,19 @@
 <template>
  <div>
  <Navbar/>
- <div class="banerSwiper">
-     <van-swipe :autoplay="3000"  indicator-color="#dd001b">
-  <van-swipe-item v-for="(item, index) in images" :key="index">
-    <img :src="item.pic" />
-    <span  class="title">{{item.typeTitle}}</span>
-  </van-swipe-item>
-</van-swipe>
- </div>
 
- <div class="tbs">
-<ul class="tab_ui">
-  <li  v-for="(item,index) in  tabdata" :key="index"  @click="clickgoto(item.id)">
-     <span :class="item.classnames"  style="position: relative; "><i class="iconrili">{{item.text=='每日推荐'?today:''}}</i></span>
-     <div class="font4">{{item.text}}</div>
-   </li>
-</ul>
- </div>
+<banner-Swiper
+:images="images"
+>
+</banner-Swiper>
+
+ <base-Tab 
+ :tabdata='tabdata'
+ >
+ </base-Tab>
  <!-- 推荐歌单 -->
-
 <home-songlist></home-songlist>
  <buttom-tabbar></buttom-tabbar>
-
-
- 
  </div>
 </template>
 
@@ -33,6 +22,8 @@ import Navbar from '../nanbar/Navbar'
 import  buttomTabbar  from '../buttomTabbar/buttomTabbar'
 import  homeSonglist  from  '../homesonglist/homeSonglist'
 import  serachInput  from  '../search/serachInput/serachInput'
+import  bannerSwiper from  '../bannerSwiper/bannerSwiper'
+import baseTab from '../base/baseTab'
 
 export default {
   name:'home',
@@ -53,38 +44,17 @@ export default {
   Navbar,
   buttomTabbar,
   homeSonglist,
-  serachInput
+  serachInput,
+  bannerSwiper,
+  baseTab
   },
   created() {
   this.getbanner()
-  },
-  computed: {
-    today(){
-      return new Date().getDate()
-      }
   },
   methods: {
   async getbanner(){
   const {data:res}=await  this.$http.get('/banner?type=1')
   this.images=res.banners
-  },
-  clickgoto(id){
-   switch(id){
-       case 1:
-       this.$router.push('/recommenday')
-       break;
-       case 2:
-       this.$router.push('/home')
-        break;
-        case 3:
-        this.$router.push('/seniority')
-         break;
-        case 4:
-        this.$router.push('/home')
-         break;
-         case 5:
-         this.$router.push('/home')
-   }
   }
   }
 }

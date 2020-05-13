@@ -17,6 +17,9 @@ import  comMents from  '@/components/commetspage/commetspage'
 import  mvPage from  '@/components/mvPage/index.vue'
 import logoinPageButton from '@/components/logoin/logoinPageButton'
 import Recommenday from '@/components/home/Recommeday'
+import singerPage from '@/components/singerPage/singerPage'
+import radioStation from '@/components/radioStation/radioStation'
+import classifiCation from '@/components/base/classifiCation'
 Vue.use(VueRouter)
 
 const routes = [
@@ -37,7 +40,10 @@ const routes = [
   {path:'/comments',component:comMents,name:'comments'},
   {path:'/mvpage',component:mvPage,name:'mvpage'},
   {path:'/logoginbtn',component:logoinPageButton},
-  {path:'/recommenday',component:Recommenday}
+  {path:'/recommenday',component:Recommenday},
+  {path:'/singerpage',component:singerPage},
+  {path:'/raduostation',component:radioStation},
+  {path:'/classification',component:classifiCation}
 ]
 
 const router = new VueRouter({

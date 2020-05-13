@@ -3,8 +3,12 @@
 <!-- 内容 -->
   <div class="modu-box"  @click="srarchIdex(idx1,idx2,idx3,idx4)">
   	<div class="small-box" >
-  <img  v-lazy="imgUrl" alt="">		
+     <div style="position: relative;">
+       <img  v-lazy="imgUrl" alt="">
+       <span style="color:#fff" class="txet_p"  v-if="lastProgramName">{{lastProgramName}}</span>
+     </div>
   		<p >{{name}}</p>
+ 
   	</div>
     <div class="tit" v-if="playcount>0">
         <span   class="iconfont  icon-pingguoerji"  style="margin-right:3px"></span>
@@ -46,6 +50,9 @@ export default {
   },
   idxsongs:{
     type:Number
+  },
+  lastProgramName:{
+    type:String
   }
   } , 
   filters:{
@@ -106,7 +113,7 @@ export default {
         flex: 33.33%;
         width: 3rem;
 		img{
-			width: 110px;
+      width: 110px;
 		}
 		p{
 		 padding: 10px 0 10px 10px;
@@ -123,6 +130,19 @@ export default {
       font-size: 0.1rem;
     }
   }
+}
+.txet_p{
+overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+position: absolute;
+color: #fff;
+font-size: 0.1rem;
+z-index: 100;
+bottom: 0.1rem;
+left: 0.1rem;
+color: #ccc;
+  width: 110px;
 }
 }
 </style>
