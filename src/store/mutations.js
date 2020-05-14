@@ -5,7 +5,8 @@ import {
     SET_PLAY_SATE,
     SET_FULL_SCREEN,
     SET_AUDIO_INDEX,
-    SET_AUDIO_LIST
+    SET_AUDIO_LIST,
+    SET_TAB_STATSU
 }  from './mutctionstype'
 
 
@@ -30,5 +31,10 @@ export default{
   //设置播放列表的信息
   [SET_AUDIO_LIST](state,list){
     state.audioList=list
+  },
+  [SET_TAB_STATSU](state,list){
+
+      state.tabstatus=list
+    console.log(state.tabstatus)
   }
 }

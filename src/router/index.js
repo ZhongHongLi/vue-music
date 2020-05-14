@@ -20,6 +20,9 @@ import Recommenday from '@/components/home/Recommeday'
 import singerPage from '@/components/singerPage/singerPage'
 import radioStation from '@/components/radioStation/radioStation'
 import classifiCation from '@/components/base/classifiCation'
+import songSingle from  '@/components/base/songSingle'
+import radioCharts from '@/components/radioStation/radioCharts'
+import baseList   from '@/components/base/baseList'
 Vue.use(VueRouter)
 
 const routes = [
@@ -43,7 +46,10 @@ const routes = [
   {path:'/recommenday',component:Recommenday},
   {path:'/singerpage',component:singerPage},
   {path:'/raduostation',component:radioStation},
-  {path:'/classification',component:classifiCation}
+  {path:'/classification',component:classifiCation},
+  {path:'/songsingle',component:songSingle},
+  {path:'/radiocharts',component:radioCharts},
+  {path:'/baselist',component:baseList}
 ]
 
 const router = new VueRouter({

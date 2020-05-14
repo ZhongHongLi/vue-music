@@ -1,9 +1,10 @@
 <template>
  <div class="buttom-bar">
-<van-tabbar v-model="active"  active-color="#fff"  @change="onChange">
-  <van-tabbar-item class="iconfont  icon-vynil"  >发现音乐</van-tabbar-item>
-  <van-tabbar-item  class="iconfont  icon-audio" size="0.5rem"  >我的音乐</van-tabbar-item>
-  <van-tabbar-item class="iconfont  icon-dilanxianxingiconyihuifu_huabanfuben"   size="0.5rem" >朋友</van-tabbar-item>
+<van-tabbar v-model="active"  active-color="red"  @change="onChange">
+  <van-tabbar-item class="iconfont  icon-vynil"  >发现</van-tabbar-item>
+   <van-tabbar-item  class="iconfont iconbofang1" size="0.5rem"  >视频</van-tabbar-item>
+  <van-tabbar-item  class="iconfont  icon-audio" size="0.5rem"  >我的</van-tabbar-item>
+  <van-tabbar-item class="iconfont  icon-dilanxianxingiconyihuifu_huabanfuben"   size="0.5rem" >云村</van-tabbar-item>
   <van-tabbar-item  class="iconfont  icon-zhanghaosheweimoren"  size="0.5rem"  >账号</van-tabbar-item>
 </van-tabbar>
  </div>

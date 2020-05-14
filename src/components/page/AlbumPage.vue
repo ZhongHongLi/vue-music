@@ -562,37 +562,6 @@ async  _getSongUrl(id){
       }
    }
   }
-  // .songlix-box{
-	//   padding: 6px 12px;
-	//   li{
-	// 	  height: 53px;
-	// 	  display: flex;
-	//       align-items: center;
-	// 	  .indexspan{
-	// 		  padding-right: 15px;
-  //       color: #999;
-  //       font-size: 16px;
-	// 	  }
-	// 	  .songtitle-p{
-	// 		  height: 20px;
-	// 		  font-size: 14px;
-	// 		  color: #333;
-	// 		  width: 300px;
-	// 		  white-space: nowrap;
-	// 		  overflow: hidden;
-	// 		  text-overflow: ellipsis;
-	// 	  }
-	// 	  .songtitle-p1{
-	// 		color: #dacdcd;
-	// 		height:20px;
-	// 		font-size: 12px;
-	// 		white-space: nowrap;
-	// 		overflow: hidden;
-	// 		text-overflow: ellipsis;
-	// 		width: 300px;
-	// 	  }
-	//   }
-  // }
 
   .play-ying{   
     position: fixed;

@@ -6,6 +6,28 @@
   </div>
 </template>
 
+
+<script>
+
+export default {
+  data(){
+    return{
+    isshow:false
+    }
+  },
+  created() {
+   
+  },
+
+  components:{
+
+  },
+  methods:{
+  
+  }
+}
+</script>
+
 <style lang="less">
  #app{
    box-sizing: border-box;

@@ -5,4 +5,5 @@ export  default{
     fullScreen:false,//是否全屏显示
     audioIngIndex:-1,  //记录正在播放这一首歌曲的索引
     audioList: [], // 用来展示播放列表项
+    tabstatus:false
 }

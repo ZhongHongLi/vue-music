@@ -11,7 +11,8 @@ const  getters={
     CURRENT_INDEX:state=>state.audioIngIndex,
     AUDIO_ING_SONG:state=>{
         return  state.audioList[state.audioIngIndex]||{}
-    }
+    },
+    SET_STATUSTAB:state=>state.tabstatus
 }
 
 export default  getters

@@ -22,7 +22,9 @@ checkSong,
 singerClass,
 djbanner,
 djClassification,
-radioRecommendations
+radioRecommendations,
+Hotanchor,
+djHotToplist
 } from './config'
 
 export default{
@@ -245,6 +247,28 @@ defaultSearchInput(){
    */
   djClassificationFn () {
     return axios.get(djClassification)
+  },
+  //最热主播榜
+  /**
+   * limit : 返回数量 , 默认为 100 (不支持 offset)
+   */
+  djhostauthorFn(){
+    return axios.get(Hotanchor)
+  },
+    /**
+   * 登陆后调用此接口 , 可获得新晋电台榜/热门电台榜
+   * @param {*} limit 返回数量 , 默认为 100
+   * @param {*} offset 偏移数量，用于分页
+   * @param {*} type 榜单类型, new 为新晋电台榜, hot为热门电台榜
+   */
+  djHotToplistFn (limit = 100, offset = 0, type = 'hot') {
+    return axios.get(djHotToplist, {
+      params: {
+        limit,
+        offset,
+        type
+      }
+    })
   }
 }
 

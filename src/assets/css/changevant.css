@@ -1,6 +1,6 @@
 .van-tabbar{
-    background: rgba(0,0,0,10) !important;
-    opacity:0.4;
+    background: #ccc  !important;
+    /* opacity:0.4; */
     filter:alpha(opacity=40);
     transform: translateZ(0);
     -webkit-transform: translateZ(0);

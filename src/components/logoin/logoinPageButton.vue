@@ -39,6 +39,7 @@
 
 <script>
 import { Toast } from 'vant';
+import {mapMutations} from 'vuex';
 export default {
  data() {
  return {
@@ -50,9 +51,11 @@ cheboxstatus:''
  created(){
 
  },
+  ...mapMutations(['SET_TAB_STATSU']),
  methods: {
   experience(){
       this.$router.push('/home')
+      this.$store.commit('SET_TAB_STATSU',true)
   },
   phoneloding(){
        if(this.cheboxstatus==false){
@@ -89,6 +92,8 @@ cheboxstatus:''
         background-color: #dd001b;
         font-size: 10px;
         z-index: 999;
+        position: fixed;
+        left: 0;
 }
 
 .index-icon{

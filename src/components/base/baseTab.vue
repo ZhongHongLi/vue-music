@@ -37,7 +37,7 @@ export default {
        this.$router.push('/recommenday')
        break;
        case 2:
-       this.$router.push('/home')
+       this.$router.push('/songsingle')
         break;
         case 3:
         this.$router.push('/seniority')
@@ -49,7 +49,10 @@ export default {
          this.$router.push('/home')
          break;
          case 6:
-           this.$router.push('/classification')
+         this.$router.push('/classification')
+         break;
+         case 7:
+         this.$router.push('/radiocharts')
    }
  }
  }

@@ -24,3 +24,6 @@ export const singerClass =  '/artist/list' // 歌手分类
 export const djbanner='/dj/banner' //电台轮播
 export const radioRecommendations =  '/dj/today/perfered' // 电台推荐数据
 export const djClassification = '/dj/catelist' // 电台分类
+export const  Hotanchor='/dj/toplist/popular'
+export const djToplist ='/dj/program/toplist' // 获取最热节目
+export const djHotToplist = '/dj/toplist' // 获取电台榜

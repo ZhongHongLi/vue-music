@@ -2,7 +2,7 @@
  <div>
    <serachInput  :paramsid="paramsid"/>
    <!-- nav  切换 -->
-    <sliderNav />
+    <sliderNav  :list="list"   />
  </div>
 </template>
 
@@ -14,7 +14,17 @@ export default {
  data() {
  return {
  paramsid:'',
- composite:[]
+ composite:[],
+   list:[
+    {id:1,name:'综合'},
+    {id:2,name:'单曲'},
+    {id:3,name:'视频'},
+    {id:4,name:'歌手'},
+    {id:5,name:'专辑'},
+    {id:6,name:'歌曲'},
+    {id:7,name:'主播电台'},
+    {id:8,name:'用户'},
+  ]
  }
  },
  created(){
