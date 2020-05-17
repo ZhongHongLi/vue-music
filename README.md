@@ -28,3 +28,5 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### 后台借口基于第三方
 
 ### 接口地址  <http://120.53.13.253:8084/page/index.html#/home>
+
+### 服务器的请求地址 需要请私聊我或者给我发邮件，看到会回复
