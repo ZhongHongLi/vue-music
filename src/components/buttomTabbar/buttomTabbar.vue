@@ -29,7 +29,7 @@ export default {
        this.$router.push('/home')
        break;
        case 1:
-       this.$router.push('/mymusic')
+       this.$router.push('/myvideo')
         break;
         case 2:
         this.$router.push('/friends')

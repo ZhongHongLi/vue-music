@@ -12,29 +12,7 @@
 
        </van-popup>
     <nav class="nav-box">
-      <!-- <div class="nav-left">
-        <van-cell  @click="showPopup">
-        <van-icon name="wap-nav" size="25px" />
-        </van-cell>
-      </div> -->
-      <!-- <ul class="nav-center">
-        <li>
-          <a href="javascript:;">我的</a>
-        </li>
-        <li>
-          <a href="javascript:;">发现</a>
-        </li>
-        <li>
-          <a href="javascript:;">朋友</a>
-        </li>
-        <li>
-          <a href="javascript:;">视频</a>
-        </li>
-      </ul> -->
-       <!-- <div class="nav-right">
-        <van-icon name="search" size="25px"   />
-      </div>  -->
-      <div class="left-icon"><span class="iconfont icon-maikefeng" ></span></div>
+      <div class="left-icon"><span :class="iconfontdata[0].className" ></span></div>
        <!-- <input type="text" class="input-bg"  @click="seachrbtn"  :placeholder="input"> -->
        <van-search
        class="input-bg"
@@ -42,7 +20,7 @@
       @click="seachrbtn"
     background="#4fc08d"
 />
-       <div class="right-icon"><span class="iconfont icon-pingguoerji1" ></span></div>
+       <div class="right-icon"><span :class="iconfontdata[1].className" ></span></div>
     </nav> 
   </div>
 </template>
@@ -50,6 +28,11 @@
 <script>
 
 export default {
+ props:{
+ iconfontdata:{
+   type:Array
+ }
+ },
  data() {
  return {
    show: false,

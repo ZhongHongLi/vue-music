@@ -1,6 +1,6 @@
 <template>
  <div>
- <Navbar/>
+ <Navbar  :iconfontdata="iconfontdata"/>
 
 <banner-Swiper
 :images="images"
@@ -37,6 +37,10 @@ export default {
         {id:3,text:'排行榜',classnames:'iconfont icon-paihangbang font7 red'},
         {id:4,text:'电台',classnames:'iconfont icon-shouyinji font7 red'},
         {id:5,text:'直播',classnames:'iconfont icon-yanjing'}
+    ],
+    iconfontdata:[
+      {id:1,className:'iconfont icon-maikefeng'},
+      {id:2,className:'iconfont icon-vynil'}
     ]
     }
   },

@@ -23,6 +23,7 @@ import classifiCation from '@/components/base/classifiCation'
 import songSingle from  '@/components/base/songSingle'
 import radioCharts from '@/components/radioStation/radioCharts'
 import baseList   from '@/components/base/baseList'
+import myVideo  from '@/components/mybuttonTab/myVideo'
 Vue.use(VueRouter)
 
 const routes = [
@@ -49,7 +50,8 @@ const routes = [
   {path:'/classification',component:classifiCation},
   {path:'/songsingle',component:songSingle},
   {path:'/radiocharts',component:radioCharts},
-  {path:'/baselist',component:baseList}
+  {path:'/baselist',component:baseList},
+  {path:'/myvideo',component:myVideo}
 ]
 
 const router = new VueRouter({

@@ -2,7 +2,7 @@
  <div class="seninority-contariner">
 	 <Page-Loding v-show="loding"></Page-Loding>
 	 <div v-show="!loding">
-  <Navbar/>
+ <baseTop :title="title"></baseTop>
   <!-- 歌单 -->
 
 <!-- 排行榜 -->
@@ -53,11 +53,11 @@ v-for="(item,index) in officialIdxList"
 </template>
 
 <script>
-import Navbar from './comom/Navbar'
 import PageLoding from '../loding/PageLoding.vue'
 import  indexCard  from '../indexCard/indexCard'
 import  imgComponents  from '../imgComponents/imgComponents'
 import api from '../../api/index'
+import baseTop from '../base/baseTop'
 export default {
  data() {
  return {
@@ -65,14 +65,15 @@ export default {
  recommendedIdxList:[],
  moreIdxList:[],
  loding:true,
- ind:''
+ ind:'',
+ title:'排行榜'
  }
  },
  components:{
- Navbar,
  PageLoding,
  indexCard,
- imgComponents
+ imgComponents,
+ baseTop
  },
  created(){
  this.songsss()
