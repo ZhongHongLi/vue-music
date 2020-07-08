@@ -32,7 +32,15 @@ Vue.use(VueLazyload,{
 //   }
 //   return val
 // })
-	
+//处理点击路由报错问题
+import Router from 'vue-router'
+
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
+
 import '../src/assets/styles/border.css'
 import '../src/assets/styles/reset.css'
 import '../src/assets/styles/global.css'

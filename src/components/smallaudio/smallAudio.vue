@@ -1,60 +1,75 @@
 <template>
- <div  class="samll-warper">
-     <!-- 左边图片 -->
-    <div class="left-smallimg">
-        <img  :src="imgUrl" alt="">
-    </div>
-  
+    <div class="samll-warper" @click="returnFull">
+        <!-- 左边图片 -->
+        <div class="left-smallimg">
+            <img :src="imgUrl" alt="" />
+        </div>
+        <audio :src="src" ref="aduioes"></audio>
 
         <!-- 中间 -->
-    <div class="right-flex">
-      <div class="text-songm">
-          <p class="song-name">{{name}}</p>
-          <p style="font-size:12px">我是歌词现在占个位置</p>
-      </div>
+        <div class="right-flex">
+            <div class="text-songm">
+                <p class="song-name">{{ name }}</p>
+                <p style="font-size:12px">我是歌词现在占个位置</p>
+            </div>
 
-      <div class="right_icon">
-          <span class="iconfont icon-play1"></span>
-         <span class="iconfont icon-liebiao1"></span>
-      </div>
-</div>
-      
-
- </div>
+            <div class="right_icon">
+                <span
+                    @click="paly"
+                    class="iconfont icon-play1"
+                    :class="{ iconbofang: isPlay, iconzanting: !isPlay }"
+                ></span>
+                <span class="iconfont icon-liebiao1"></span>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
- props:{
- imgUrl:{
-     type:String
- },
- lyric:{
-     type:String
- },
- name:{
-     type:String
- },
- ar:{
-
- }
- },
- data() {
- return {
-
- }
- },
- created(){
-
- },
- methods: {
-
- }
+    props: {
+        imgUrl: {
+            type: String,
+        },
+        lyric: {
+            type: String,
+        },
+        name: {
+            type: String,
+        },
+        ar: {},
+        src: {
+            type: String,
+        },
+    },
+    data() {
+        return {
+            isPlay: true,
+        }
+    },
+    created() {},
+    methods: {
+        paly() {
+            const aduios = this.$refs.aduioes
+            this.isPlay = !this.isPlay
+            if (this.isPlay == true) {
+                aduios.pause()
+                //   console.log(1111111111111111)
+            } else if (this.isPlay == false) {
+                //   console.log(222222222222)
+                aduios.play()
+            }
+        },
+        //点击展示大播放器
+        returnFull() {
+            this.$emit("returnFull")
+        },
+    },
 }
 </script>
 
 <style lang="less" scoped>
-.samll-warper{
+.samll-warper {
     width: 100%;
     height: 50px;
     background-color: #fff;
@@ -65,31 +80,31 @@ export default {
     align-items: center;
     padding: 0 10px;
 }
-.left-smallimg{
+.left-smallimg {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
-    img{
+    img {
         width: 100%;
         height: 100%;
         border-radius: 50%;
     }
 }
 
-.text-songm{
+.text-songm {
     line-height: 1.5;
- .song-name{
-     font-size: 13px;
- }
+    .song-name {
+        font-size: 13px;
+    }
 }
-.right_icon{
+.right_icon {
     margin-right: 20px;
-    span{
+    span {
         padding: 0 5px;
     }
 }
-.right-flex{
+.right-flex {
     display: flex;
     /* justify-content: flex-end; */
     width: 100%;

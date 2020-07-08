@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "878499",
+      "name": "男",
+      "font_class": "nan",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "1309842",
+      "name": "女",
+      "font_class": "nv",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "2571388",
+      "name": "用户",
+      "font_class": "weibiaoti114",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "8471117",
+      "name": "删 除",
+      "font_class": "shanchu",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
       "icon_id": "2380649",
       "name": "排行",
       "font_class": "paihang",
