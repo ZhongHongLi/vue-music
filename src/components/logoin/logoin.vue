@@ -76,6 +76,7 @@
 <script>
 import { Toast } from "vant"
 import api from "../../api/index"
+import {mapActions} from 'vuex'
 export default {
     data() {
         return {
@@ -90,6 +91,7 @@ export default {
             phone1: "",
             password1: "",
             name: "",
+            userid:''
         }
     },
     created() {},
@@ -102,6 +104,14 @@ export default {
             )
 
             if (res.code == 200) {
+                console.log(res);
+                localStorage.setItem('userinfo',JSON.stringify(res))
+                //用户的id
+                this.userId=res.profile.userId
+                console.log(this.userId);
+                this.getuserAction({
+                    id: this.userId
+                })
                 Toast.success("登录成功")
                 this.$router.push("/home")
             }
@@ -172,6 +182,7 @@ export default {
                 })
             }
         },
+        ...mapActions(['getuserAction'])
     },
 }
 </script>

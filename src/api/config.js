@@ -27,3 +27,4 @@ export const djClassification = '/dj/catelist' // 电台分类
 export const Hotanchor = '/dj/toplist/popular'
 export const djToplist = '/dj/program/toplist' // 获取最热节目
 export const djHotToplist = '/dj/toplist' // 获取电台榜
+export const userdetail='/user/detail' //获取用户详情

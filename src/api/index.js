@@ -24,7 +24,8 @@ import {
     djClassification,
     radioRecommendations,
     Hotanchor,
-    djHotToplist
+    djHotToplist,
+    userdetail
 } from './config'
 
 export default {
@@ -269,6 +270,16 @@ export default {
                 type
             }
         })
-    }
+    },
+    /*
+    用户id 
+    */
+    getUserdetailFn(id){
+        return axios.get(userdetail,{
+            params:{
+                uid:id
+            }
+        })
+    } 
 }
 

@@ -7,6 +7,10 @@ li {
 	list-style: none;
 }
 
+body{
+    margin-bottom: 1.3rem !important;
+}
+
 /* .icon, .iconfont {
   font-family:"iconfont" !important;
   font-size:16px;

@@ -16,6 +16,7 @@ export default {
     issmall: false,
     songs: {}, //当前歌曲记录,
     linkPage: 'searchsonglist',
+    userdetail:[]//用户详情
     /*
     **
     */

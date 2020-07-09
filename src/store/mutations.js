@@ -11,7 +11,8 @@ import {
     SET_PLAY_LIST,
     GET_SONGS,
     SET_AUDIO_MODE,
-    SET_LINK_PAGE
+    SET_LINK_PAGE,
+    GET_USERINFO,
 } from './mutctionstype'
 
 
@@ -64,4 +65,7 @@ export default {
     [SET_LINK_PAGE] (state, page) {
         state.linkPage = page
     },
+    [GET_USERINFO](state,data){
+        state.userdetail=data
+    }
 }

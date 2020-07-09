@@ -4,9 +4,11 @@ import {
     SET_FULL_SCREEN,
     SET_AUDIO_LIST,
     SET_PLAY_LIST,
-    GET_SONGS
+    GET_SONGS,
+    GET_USERINFO
 } from './mutctionstype'
 
+import api from '../api/index'
 
 /*获取随机值*/
 
@@ -58,5 +60,12 @@ export default {
         commit(SET_PLAY_SATE, true)
         // 设置当前的播放器的状态，是大还是小
         commit(SET_FULL_SCREEN, true)
+    },
+     getuserAction({commit},{id}){
+         console.log(id);
+        api.getUserdetailFn(id).then(res=>{
+            console.log(res);
+            commit(GET_USERINFO,res)
+        })
     }
 }
