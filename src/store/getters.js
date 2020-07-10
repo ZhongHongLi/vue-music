@@ -16,7 +16,8 @@ const getters = {
     PLAY_LIST: state => state.playList,
     OFFSET_LYRIC: state => state.offsetLyric,
     PLAYING_SHOW: state => state.playingShow,
-    LINK_PAGE: state => state.linkPage
+    LINK_PAGE: state => state.linkPage,
+    LOGIN_STATE: state => state.loginState, //登录的状态
 }
 
 

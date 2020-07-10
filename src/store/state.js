@@ -16,7 +16,8 @@ export default {
     issmall: false,
     songs: {}, //当前歌曲记录,
     linkPage: 'searchsonglist',
-    userdetail:[]//用户详情
+    userdetail:[],//用户详情
+    loginState:0 // 登陆状态，初始值为 0 未登录，登陆成功设置为 1
     /*
     **
     */

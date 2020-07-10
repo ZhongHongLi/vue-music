@@ -13,7 +13,7 @@
 import basetoptitle from '@/base/baseTopTitle'
 import baseCard from '@/base/baseCard'
 import baseContent from './components/baseContent'
-import { Notify } from 'vant';
+import { Toast } from 'vant';
 export default {
     data() {
         return {
@@ -21,15 +21,6 @@ export default {
             userinfo:{}
         }
     },
-   beforeRouteEnter(to,from,next){
-   console.log(to,from);
-   if(to.path=='/accounts'){
-       console.log(to.path);
-       console.log('我检测到了');
-    
-   }
-   next()
-   },
     created() {
      
     },
@@ -38,7 +29,8 @@ export default {
         this.userinfo=JSON.parse(localStorage.getItem('userinfo'))
         console.log(this.userinfo);
          if(this.userinfo==null){
-             Notify({ type: 'warning', message: '用户还没有登录' });
+            //  Notify({ type: 'warning', message: '用户还没有登录' });
+            Toast.fail('用户还没有登录');
          }
       }
     },

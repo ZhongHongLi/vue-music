@@ -13,7 +13,7 @@
                 </div>
             </div>
         </van-popup>
-        <nav class="nav-box">
+        <nav class="nav-box" >
             <div class="left-icon">
                 <span :class="iconfontdata[0].className"></span>
             </div>
@@ -111,6 +111,10 @@ export default {
         height: 0.8rem;
         line-height: 0.8rem;
         padding: 0.3rem 0.15rem 0 0.15rem;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0; 
+        z-index: 2;
     }
 }
 

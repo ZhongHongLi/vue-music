@@ -13,6 +13,7 @@ import {
     SET_AUDIO_MODE,
     SET_LINK_PAGE,
     GET_USERINFO,
+    LOGIN_STATE
 } from './mutctionstype'
 
 
@@ -67,5 +68,9 @@ export default {
     },
     [GET_USERINFO](state,data){
         state.userdetail=data
-    }
+    },
+    //设置登录的状态
+    [LOGIN_STATE] (state, num) {
+        state.loginState = num
+      }
 }

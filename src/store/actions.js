@@ -64,7 +64,7 @@ export default {
      getuserAction({commit},{id}){
          console.log(id);
         api.getUserdetailFn(id).then(res=>{
-            console.log(res);
+       
             commit(GET_USERINFO,res)
         })
     }

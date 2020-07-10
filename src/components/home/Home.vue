@@ -1,7 +1,6 @@
 <template>
     <div>
-        <Navbar :iconfontdata="iconfontdata" />
-
+            <Navbar :iconfontdata="iconfontdata" />
         <banner-Swiper :images="images"></banner-Swiper>
 
         <base-Tab :tabdata="tabdata"></base-Tab>
@@ -18,11 +17,11 @@ import homeSonglist from "../homesonglist/homeSonglist"
 import serachInput from "../search/serachInput/serachInput"
 import bannerSwiper from "../bannerSwiper/bannerSwiper"
 import baseTab from "../base/baseTab"
-
 export default {
     name: "home",
     data() {
         return {
+            container: null,
             images: [],
             bordernone: false,
             tabdata: [

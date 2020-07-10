@@ -74,9 +74,9 @@
 </template>
 
 <script>
-import { Toast } from "vant"
+import { Toast, CellGroup } from "vant"
 import api from "../../api/index"
-import {mapActions} from 'vuex'
+import { mapActions } from "vuex"
 export default {
     data() {
         return {
@@ -91,10 +91,13 @@ export default {
             phone1: "",
             password1: "",
             name: "",
-            userid:''
+            userid: "",
+            userId: "",
         }
     },
-    created() {},
+    created() {
+       
+    },
     methods: {
         async submit() {
             console.log("用户点击了")
@@ -102,16 +105,21 @@ export default {
                 this.phone,
                 this.password
             )
-
+            
+            // if(res!==''){
+            //      this.loginStautsMethod()
+            // }
+            console.log(res);
             if (res.code == 200) {
-                console.log(res);
-                localStorage.setItem('userinfo',JSON.stringify(res))
+                localStorage.setItem("userinfo", JSON.stringify(res))
                 //用户的id
-                this.userId=res.profile.userId
-                console.log(this.userId);
+                this.userId = res.profile.userId
+                //获取登录用户状态
+                // this.loginStautsMethod()
                 this.getuserAction({
-                    id: this.userId
+                    id: this.userId,
                 })
+                //
                 Toast.success("登录成功")
                 this.$router.push("/home")
             }
@@ -182,7 +190,31 @@ export default {
                 })
             }
         },
-        ...mapActions(['getuserAction'])
+        //登录状态的方法
+         async loginStautsMethod() {
+            console.log(111111111111111111);
+            // api.logoinStatusFn().then((res) => {
+            //     //  if(res.)
+            //     console.log(res);
+            //     this.userId = res.data.profile.userId
+            //     if (res.data.code === 200) {
+            //         //修改状态
+            //         // 存取用户信息
+            //         let accountInfo = res.data.profile
+            //         this.$store.commit("LOGIN_STATE", 1)
+            //         localStorage.setItem("loginState", 1)
+            //          // 存入用户头像 昵称
+            //         localStorage.setItem('avatarUrl', accountInfo.avatarUrl)
+            //         localStorage.setItem('nickname', accountInfo.nickname)
+            //     }
+            // })
+            // api.logoinStatusFn().then((res)=>{
+            //     console.log(res);
+            // })
+            const res=await api.logoinStatusFn()
+            console.log(res);
+        },
+        ...mapActions(["getuserAction"]),
     },
 }
 </script>

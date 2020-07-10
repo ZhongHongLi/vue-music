@@ -25,7 +25,9 @@ import {
     radioRecommendations,
     Hotanchor,
     djHotToplist,
-    userdetail
+    userdetail,
+    likelist,
+    loginStatus
 } from './config'
 
 export default {
@@ -272,7 +274,7 @@ export default {
         })
     },
     /*
-    用户id 
+    用户id  获取用户详情
     */
     getUserdetailFn(id){
         return axios.get(userdetail,{
@@ -280,6 +282,20 @@ export default {
                 uid:id
             }
         })
-    } 
+    },
+    //获取我喜欢的音乐接口
+    getLikeListFn(id){
+        const timestamp = +new Date()
+        return axios.get(likelist,{
+            params:{
+                uid:id,
+                timestamp
+            }
+        })
+    },
+    //获取当前登录状态
+    logoinStatusFn(){
+        return axios.get(loginStatus)
+    }
 }
 

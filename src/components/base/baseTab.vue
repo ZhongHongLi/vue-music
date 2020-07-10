@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { Toast } from 'vant';
 export default {
     props:{
     tabdata:{
@@ -32,6 +33,7 @@ export default {
  },
  methods: {
  clickgoto(id){
+     console.log(id);
      switch(id){
        case 1:
        this.$router.push('/recommenday')
@@ -46,7 +48,8 @@ export default {
         this.$router.push('/raduostation')
          break;
          case 5:
-         this.$router.push('/home')
+        //  this.$router.push('/home')
+        Toast('正在开发中...');
          break;
          case 6:
          this.$router.push('/classification')

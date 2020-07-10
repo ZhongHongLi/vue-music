@@ -10,3 +10,4 @@ export const GET_SONGS = 'GET_SONGS'//获取当前歌曲
 export const SET_AUDIO_MODE = 'SET_AUDIO_MODE' // 设置当前的播放模式
 export const SET_LINK_PAGE = 'SET_LINK_PAGE' // 将load返回默认的true
 export const GET_USERINFO="GET_USERINFO" //获取用户详情
+export const LOGIN_STATE = 'LOGIN_STATE' // 登陆状态

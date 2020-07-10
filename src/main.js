@@ -21,6 +21,7 @@ import 'vant/lib/index.css';
 Vue.use(Vant);
 
 
+
 Vue.use(VueLazyload,{
   loading:"https://s2.ax1x.com/2019/09/08/n8qAAS.gif"
 })
