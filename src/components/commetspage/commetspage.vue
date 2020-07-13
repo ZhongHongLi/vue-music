@@ -10,7 +10,7 @@
             <img :src="albumInfo.imgUrl" alt="" />
             <div class="middle-text">
                 <p>{{ albumInfo.titltop }}</p>
-                <p>222222222</p>
+                <p style="margin-top:0.2rem;font-size:0.2rem">by <span style="color:blue">网易云音乐</span></p>
             </div>
             <span>></span>
         </div>

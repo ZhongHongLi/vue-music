@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 import {
     topList,
     idxList,
@@ -27,7 +26,14 @@ import {
     djHotToplist,
     userdetail,
     likelist,
-    loginStatus
+    loginStatus,
+    recommenday,
+    recommedsong,
+    usersonglist,
+    toplist,
+    getsongurl,
+    comment,
+    songcomment
 } from './config'
 
 export default {
@@ -106,11 +112,12 @@ export default {
     },
     //手机登录
     getloginmethod (phone, password) {
-        return axios.get(logins, {
+        return axios.get(logins,{
             params: {
                 phone,
                 password
-            }
+            },
+            withCredentials:true
         })
     },
     //验证码发送
@@ -290,12 +297,70 @@ export default {
             params:{
                 uid:id,
                 timestamp
-            }
+            },
+            withCredentials:true 
         })
     },
     //获取当前登录状态
     logoinStatusFn(){
-        return axios.get(loginStatus)
+        return axios.get(loginStatus,{
+            withCredentials:true
+        })
+    },
+    getRecommendFn(){
+        return axios.get(recommenday,{
+            withCredentials:true
+        })
+    },
+    //每日推荐
+    getRecommedSongFn(){
+        return axios.get(recommedsong,{
+            withCredentials:true
+        })
+    },
+    getuserSongListFn(id){
+        return axios.get(usersonglist,{
+            params:{
+                uid:id
+            }
+        })
+    },
+    getAlltoplist(){
+        return axios.get(toplist)
+    },
+    //获取歌曲的
+    getSongUrlFn(id){
+        return axios.get(getsongurl,{
+        //    params:{
+        //     id:id
+        //    }
+        })
+    },
+    //给评论点赞
+    /**
+     *  id 资源id  歌曲 mv，id
+     * cid  评论id
+     * t   是否点赞 1位点赞
+     * type  数组，资源类型对应歌曲mv
+     * **/
+    sendCommentLikeFn(id,cid,t,type){
+        return axios.get(comment,{
+            params:{
+               id,
+               cid,
+               t,
+               type 
+            },
+            withCredentials:true
+        })
+    },
+    //歌曲的评论
+    sendCommentSong(id){
+        return axios.get(songcomment,{
+            params:{
+                id
+            }
+        })
     }
 }
 

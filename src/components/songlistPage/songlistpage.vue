@@ -108,9 +108,11 @@ export default {
             const commt = this.commentCount
             //头部的标题
             const titltop = this.detailtoplist.name
+            //歌单的id
+            let sonlistId=2
             this.$router.push({
                 name: "comments",
-                params: { imgUrl, commt, titltop, ids },
+                params: { imgUrl, commt, titltop, ids,sonlistId },
             })
         },
     },

@@ -21,10 +21,16 @@
                 </div>
                 <div class="histroy">历史日推</div>
             </div>
-            <div class="banner-waper">
-                <span style="font-size:0.4rem; color:#25a4bb;">
+            <div class="banner-waper"  >
+                <span style="font-size:0.4rem; color:#25a4bb;" v-show="isLogin===0" @click="logion">
                     需要用户登录</span
                 >
+                <!-- 歌单 -->
+                <vueScroll height="" :ops="ops">
+                <songlist
+               :songLists="songLists"
+                ></songlist>
+                </vueScroll>
             </div>
         </div>
     </div>
@@ -32,6 +38,9 @@
 
 <script>
 import baseTop from "../base/baseTop"
+import api from '@/api/index'
+import songlist from './components/songlist'
+import vueScroll from 'vuescroll'
 export default {
     data() {
         return {
@@ -39,9 +48,20 @@ export default {
             startY: 0,
             isTouchStart: false,
             title: "每日推荐",
+            isLogin:+localStorage.getItem('loginState')||0,
+            songLists:[],
+            ops:{
+                bar:{
+                    background:'#ccc',
+                    width:'2px'
+                }
+            }
         }
     },
-    created() {},
+    created() {
+        console.log(localStorage.getItem('loginState'));
+        this.getRecommedayMethod()
+    },
     computed: {
         getMoth() {
             const month =
@@ -56,6 +76,8 @@ export default {
     },
     components: {
         baseTop,
+        songlist,
+        vueScroll
     },
     mounted() {
         this.$nextTick(function() {
@@ -97,6 +119,21 @@ export default {
             this.$el.querySelector(".banner").classList.add("heightback")
             this.isTouchStart = false
         },
+        //获取每日推荐歌曲的请求
+       async getRecommedayMethod(){
+            //判断不等于0
+            if(this.isLogin!==0){
+             let {data:res}=await api.getRecommedSongFn()
+             console.log(res);
+             if(res.code===200){
+                 this.songLists=res.recommend
+             }
+            }
+        },
+        //跳转到登录页
+        logion(){
+            this.$router.push('/logoginbtn')
+        }
     },
 }
 </script>

@@ -5,7 +5,7 @@ export const playMode = {
 }
 export default {
     offsetLyric: 0, //歌词的偏移
-    playingShow: true, // 是否显示转盘播放页面
+    playingShow: false, // 是否显示转盘播放页面
     palyStatus: false,//显示是否正在播放,
     fullScreen: false,//是否全屏显示
     audioIngIndex: -1,  //记录正在播放这一首歌曲的索引
@@ -17,7 +17,12 @@ export default {
     songs: {}, //当前歌曲记录,
     linkPage: 'searchsonglist',
     userdetail:[],//用户详情
-    loginState:0 // 登陆状态，初始值为 0 未登录，登陆成功设置为 1
+    loginState:0, // 登陆状态，初始值为 0 未登录，登陆成功设置为 1
+    time:'00:00',
+    ruleLyrics:[], //歌词
+    marginTop:null, //
+    roterisshow:true,
+    songdata:[], //获取歌曲的
     /*
     **
     */

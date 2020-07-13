@@ -95,9 +95,7 @@ export default {
             userId: "",
         }
     },
-    created() {
-       
-    },
+    created() {},
     methods: {
         async submit() {
             console.log("用户点击了")
@@ -105,20 +103,25 @@ export default {
                 this.phone,
                 this.password
             )
-            
-            // if(res!==''){
-            //      this.loginStautsMethod()
-            // }
-            console.log(res);
+            // console.log(res)
             if (res.code == 200) {
                 localStorage.setItem("userinfo", JSON.stringify(res))
                 //用户的id
                 this.userId = res.profile.userId
+                localStorage.setItem('userid',this.userId)
                 //获取登录用户状态
-                // this.loginStautsMethod()
+                this.loginStautsMethod()
                 this.getuserAction({
                     id: this.userId,
                 })
+                // api.getRecommedSongFn()
+                //     .then((res) => {
+                //         console.log("获取成功")
+                //         console.log(res)
+                //     })
+                //     .catch((err) => {
+                //         console.log(err)
+                //     })
                 //
                 Toast.success("登录成功")
                 this.$router.push("/home")
@@ -191,28 +194,27 @@ export default {
             }
         },
         //登录状态的方法
-         async loginStautsMethod() {
-            console.log(111111111111111111);
-            // api.logoinStatusFn().then((res) => {
-            //     //  if(res.)
-            //     console.log(res);
-            //     this.userId = res.data.profile.userId
-            //     if (res.data.code === 200) {
-            //         //修改状态
-            //         // 存取用户信息
-            //         let accountInfo = res.data.profile
-            //         this.$store.commit("LOGIN_STATE", 1)
-            //         localStorage.setItem("loginState", 1)
-            //          // 存入用户头像 昵称
-            //         localStorage.setItem('avatarUrl', accountInfo.avatarUrl)
-            //         localStorage.setItem('nickname', accountInfo.nickname)
-            //     }
-            // })
-            // api.logoinStatusFn().then((res)=>{
-            //     console.log(res);
-            // })
-            const res=await api.logoinStatusFn()
-            console.log(res);
+        async loginStautsMethod() {
+            const res = await api.logoinStatusFn()
+            console.log(res)
+            if (res) {
+                //存用户的id
+                // let userId = res.data.profile.userId
+                if (res.data.code === 200) {
+                    //存储用户信息
+                    let accountInfo = res.data.profile
+                    // 成功登陆
+                    // 修改状态为 1
+                    this.$store.commit("LOGIN_STATE", 1)
+                    // Vuex在用户刷新的时候loginState会回到默认值false
+                    // 所以我们需要用到HTML5储存
+                    // 我们设置一个名为loginState
+                    localStorage.setItem("loginState", 1)
+                    // 存入用户头像 昵称
+                    localStorage.setItem("avatarUrl", accountInfo.avatarUrl)
+                    localStorage.setItem("nickname", accountInfo.nickname)
+                }
+            }
         },
         ...mapActions(["getuserAction"]),
     },

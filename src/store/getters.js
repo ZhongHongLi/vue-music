@@ -18,6 +18,7 @@ const getters = {
     PLAYING_SHOW: state => state.playingShow,
     LINK_PAGE: state => state.linkPage,
     LOGIN_STATE: state => state.loginState, //登录的状态
+    MARTOP:state=>state.marginTop
 }
 
 

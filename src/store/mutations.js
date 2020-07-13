@@ -13,7 +13,11 @@ import {
     SET_AUDIO_MODE,
     SET_LINK_PAGE,
     GET_USERINFO,
-    LOGIN_STATE
+    LOGIN_STATE,
+    TIME_STATE,
+    RULELYRIC,
+    CURRENT_INDEX,
+    GETUSER_SONGURL
 } from './mutctionstype'
 
 
@@ -43,7 +47,6 @@ export default {
         state.tabstatus = list
     },
     [SET_SMALLAUDIO_STATUS] (state, boolean) {
-        console.log(boolean)
         state.issmall = boolean
     },
     [SET_PLAY_LIST] (state, list) {
@@ -72,5 +75,27 @@ export default {
     //设置登录的状态
     [LOGIN_STATE] (state, num) {
         state.loginState = num
-      }
+      },
+    //储存时间
+    [TIME_STATE](state,time){
+        state.time=time
+    },
+    //歌词
+    [RULELYRIC](state,arr){
+        state.ruleLyrics=arr
+        localStorage.setItem('ruleyics',JSON.stringify(state.ruleLyrics))
+    },
+    //歌曲播放的索引
+    [CURRENT_INDEX](state,index){
+        const midHeight = 3.5
+        let top = midHeight - index * 0.6
+        if (top > 0) {
+            // top 不能为正数
+            top = 0
+        }
+        state.marginTop = top + "rem"
+    },
+    [GETUSER_SONGURL](state,song){
+        state.songdata=song
+    }
 }

@@ -34,7 +34,7 @@
             :load="load"
         ></song-list>
 
-        <div class="audiobox" v-show="isFull" :data="onesong">
+        <div class="audiobox" v-if="isFull" :data="onesong">
             <audio
                 :src="onesong.url"
                 autoplay
@@ -43,9 +43,9 @@
             ></audio>
         </div>
         <!-- 播放的页面的显示 默认是隐藏的 -->
-        <div class="play-ying" v-if="isplayshow">
-            <div class="plypading">
-                <div class="playtitle">
+        <!-- <div class="play-ying"> -->
+            <!-- <div class="plypading"> -->
+            <!-- <div class="playtitle">
                     <div class="left-arrow">
                         <van-icon
                             name="arrow-left"
@@ -62,14 +62,14 @@
                             {{ SongName }}
                         </div>
                     </div>
-                </div>
-                <!-- 中间的圆 -->
-                <cilcle-page
+                </div> -->
+            <!-- 中间的圆 -->
+            <!-- <cilcle-page
                     :imgUrl="imgUrl"
                     v-show="playingShow"
                     @click.native="setPlayingShow(false)"
-                ></cilcle-page>
-                <lyric-page
+                ></cilcle-page> -->
+            <!-- <lyric-page
                     @click.native="setPlayingShow(true)"
                     v-show="!playingShow"
                     :lyricArray="ruleLyric"
@@ -78,16 +78,16 @@
                     :noLyric="noLyric"
                     :noLyricText="noLyricText"
                     :aduioObject="aduioObject"
-                ></lyric-page>
+                ></lyric-page> -->
 
-                <div class="audio-ico">
+            <!-- <div class="audio-ico">
                     <van-icon name="like-o" color="#bdc3c7" />
                     <van-icon name="down" color="#bdc3c7" />
                     <van-icon name="notes-o" color="#bdc3c7" />
-                </div>
+                </div> -->
 
-                <!-- bar 播放的条 -->
-                <div class="bar" @time="changeTime">
+            <!-- bar 播放的条 -->
+            <!-- <div class="bar" @time="changeTime">
                     <span>{{ startTime }}</span>
                     <div class="bar-bg">
                         <div class="bar-larer"></div>
@@ -98,16 +98,16 @@
                     </div>
                     <span>{{ allTime | setTimes }}</span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- 下面的播放的区域 -->
-            <function-button
+            <!-- <function-button
                 @play="toogleplay"
                 @next="nextSong"
                 @prev="prevSong"
-            ></function-button>
+            ></function-button> -->
 
-            <smallAudio
+            <!-- <smallAudio
                 v-show="!isFull"
                 :imgUrl="imgUrl"
                 :name="name"
@@ -115,8 +115,30 @@
                 :ar="ar"
                 :src="onesong.url"
                 @returnFull="returnFull"
-            ></smallAudio>
-        </div>
+            ></smallAudio> -->
+            <player
+                v-if="setPlayingShow"
+                :name="name"
+                :SongName="SongName"
+                :imgUrl="imgUrl"
+                :allTime="allTime"
+                :startTime="startTime"
+                :progressWidth="progressWidth"
+                :lyricArray="ruleLyric"
+                :comments="comments"
+                :hotComments="hotComments"
+                :total="total"
+            ></player>
+            <!--     :allTime="allTime"
+               
+                 :lyricArray="ruleLyric"
+                :nowLyricIndex="nowLyricIndex"
+                ref="lyric"
+                :noLyric="noLyric"
+                :noLyricText="noLyricText"
+                :aduioObject="aduioObject"
+                -->
+        <!-- </div> -->
     </div>
 </template>
 
@@ -131,7 +153,10 @@ import functionButton from "../../components/functionButton/functionButton"
 import smallAudio from "../../components/smallaudio/smallAudio"
 import songList from "../../components/songlistPage/songlist"
 import songListPage from "../../components/songlistPage/songlistpage"
+import commetspage from '../../components/commetspage/commetspage'
+import player from "../../base/player"
 import { Toast } from "vant"
+import Bus from "../../assets/Bus"
 export default {
     data() {
         return {
@@ -177,6 +202,10 @@ export default {
             conSong: true,
             SongName: "",
             songdeatails: {},
+            //评论总数
+            total:null,
+            comments:[],
+            hotComments:[]
         }
     },
     computed: {
@@ -198,10 +227,12 @@ export default {
         functionButton,
         smallAudio,
         songList,
+        player,
         "song-listpage": songListPage,
     },
     created() {
         //推荐歌单的id
+       console.log(this.isFull);
         this.load = true
         let abbumld = this.$route.params.id
         this.albumId = abbumld
@@ -300,6 +331,9 @@ export default {
             //请求点击的当前歌曲
             this._getSongUrl(id)
             this.geTslyrics(id)
+            this.setPlayingShow(true)
+            //获取当前歌曲的评论
+            this.getSongCommentMethod(id)
         },
         async _getSongUrl(id) {
             const { data: res } = await this.$http.get("song/url?id=" + id)
@@ -308,6 +342,20 @@ export default {
                 this.onesong = res.data[0]
                 this.audioTimeUpdate()
             }
+        },
+        //获取歌曲评论接口的方法
+        getSongCommentMethod(id){
+         if(id){
+             api.sendCommentSong(id).then((res)=>{
+                 console.log(res);
+                 if(res.data.code===200){
+                    this.total=res.data.total
+                    this.comments=res.data.comments
+                    this.hotComments=res.data.hotComments
+                    Bus.$emit('comment',this.comments)
+                 }
+             })
+         }
         },
         backgo() {
             this.isplayshow = !this.isplayshow
@@ -347,6 +395,8 @@ export default {
             //时间拼接
             let aduioTime = minteVal + ":" + secondVal
             this.startTime = aduioTime
+            // console.log(this.startTime);
+            this.setTime(aduioTime)
             //进度条的长度计算 duration 属性返回当前音频/视频的长度，以秒计。
             let barLength = (audio.currentTime / audio.duration) * 100
             //设置一个进度条的函数
@@ -355,10 +405,14 @@ export default {
             const playTime = audio.currentTime + this.offsetLyric
             const index = this.getcurrenIndex(playTime, this.ruleLyric)
             this.nowLyricIndex = index
+            localStorage.setItem('nowindex', this.nowLyricIndex)
             //设置歌词显示
-            this.showLyric(index, this.ruleLyric)
+             this.showLyric(index, this.ruleLyric)
+            
             //设置歌词页面的显示规则，传入当前歌词索引信息
-            this.$refs.lyric.setCurrent(this.nowLyricIndex)
+            // this.$refs.lyric.setCurrent(this.nowLyricIndex)
+            //vuex通过
+            this.setcurrenindex(this.nowLyricIndex)
         },
         //获取当前歌词的索引
         getcurrenIndex(time, lyricArray) {
@@ -403,12 +457,19 @@ export default {
                 if (!this.lyric.trim()) {
                     // 歌词为空
                     this.noLyricText = "暂时没有歌词"
+                    localStorage.setItem('noLyricText',this.noLyricText)
                     this.ruleLyric = []
                     this.nowLyric = ""
                     this.noLyric = true
                     return
                 }
                 this.ruleLyric = this.createLrcArray(this.lyric)
+                if(this.ruleLyric!==''){
+                    //将歌词储存起来
+                 this.setrulelyric(this.ruleLyric)
+                }else{
+                    return
+                }
             }
         },
         //讲歌词转化数据通过分割字符串  返回格式 {time,word}
@@ -468,6 +529,7 @@ export default {
         },
         //上一首
         prevSong() {
+            console.log(this.index);
             if (!this.readySong) {
                 return
             }
@@ -499,6 +561,9 @@ export default {
             setState: "SET_PLAY_SATE",
             setIndex: "SET_AUDIO_INDEX",
             setFull: "SET_FULL_SCREEN",
+            setTime:'TIME_STATE',
+            setrulelyric:'RULELYRIC',
+            setcurrenindex:'CURRENT_INDEX'
         }),
     },
     filters: {

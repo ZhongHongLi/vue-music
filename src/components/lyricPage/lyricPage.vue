@@ -1,15 +1,9 @@
 <template>
     <div>
-        <!-- <div class="volume">
-          <div class="iconfont  icon-icon-  le"  :class="value1==0?'icon-icon-1':'icon-icon-'"></div>
-           <div  style="width:100%">
-              <van-slider v-model="value1" @change="onChange"  active-color="#fff"   inactive-color='#ccc' />
-           </div>
-        </div> -->
         <div class="lyric-wapper">
             <div class="textfull" v-if="noLyric">{{ noLyricText }}</div>
 
-            <ul :style="{ marginTop: marginTop }">
+            <ul :style="{ marginTop: top }">
                 <li
                     v-for="(item, index) in lyricArray"
                     :key="index"
@@ -24,31 +18,36 @@
 
 <script>
 const midHeight = 3.5
-import { Toast } from "vant"
+import {mapGetters} from 'vuex'
 export default {
     props: {
-        lyricArray: {
-            type: Array,
-        },
+        // lyricArray: {
+        //     type: Array,
+        // },
         // 当前播放的歌词索引
-        nowLyricIndex: {
-            type: Number,
-        },
+        // nowLyricIndex: {
+        //     type: Number,
+        // },
         noLyric: {
             type: Boolean,
         },
-        noLyricText: {
-            type: String,
-        },
+        // noLyricText: {
+        //     type: String,
+        // },
         aduioObject: {},
     },
     data() {
         return {
             marginTop: "0rem",
             value1: "30",
+            lyricArray:JSON.parse(localStorage.getItem('ruleyics')),
+            noLyricText:localStorage.getItem('noLyricText'),
+            nowLyricIndex:+localStorage.getItem('nowindex')
         }
     },
-    created() {},
+    created() {
+    //    console.log(this.$store.state.ruleLyrics);
+    },
     methods: {
         setCurrent(index) {
             // 这里求出中线的位置为 8.3 rem
@@ -75,6 +74,11 @@ export default {
             }
         },
     },
+      computed: {
+        ...mapGetters({
+           top:'MARTOP'
+        }),
+    },
 }
 </script>
 
@@ -98,7 +102,7 @@ export default {
         }
     }
     .active {
-        color: #fff;
+        color: #fff !important;
     }
 
     .textfull {

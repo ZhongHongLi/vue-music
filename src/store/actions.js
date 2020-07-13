@@ -5,7 +5,8 @@ import {
     SET_AUDIO_LIST,
     SET_PLAY_LIST,
     GET_SONGS,
-    GET_USERINFO
+    GET_USERINFO,
+    GETUSER_SONGURL
 } from './mutctionstype'
 
 import api from '../api/index'
@@ -66,6 +67,13 @@ export default {
         api.getUserdetailFn(id).then(res=>{
        
             commit(GET_USERINFO,res)
+        })
+    },
+    //获取歌曲的url
+    getSongurlAll({commit},{id}){
+        api.getSongUrlFn(id).then(res=>{
+        //    console.log(res);
+           commit(GETUSER_SONGURL,res)
         })
     }
 }

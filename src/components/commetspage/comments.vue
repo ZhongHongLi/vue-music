@@ -39,7 +39,10 @@
                                 v-show="item.likedCount > 0"
                                 >{{ item.likedCount }}</span
                             >
-                            <van-icon name="good-job-o" />
+                            <van-icon
+                                name="good-job-o"
+                                @click="clickItem(item.commentId)"
+                            />
                         </div>
                     </div>
                     <div class="lineh">04月23日</div>
@@ -55,6 +58,8 @@
 </template>
 
 <script>
+import api from "@/api/index"
+import { Toast } from 'vant';
 export default {
     props: {
         commentdata: {
@@ -62,10 +67,42 @@ export default {
         },
     },
     data() {
-        return {}
+        return {
+            id: "",
+            cid: "",
+            t: 1,
+            type: null,
+        }
     },
-    created() {},
-    methods: {},
+    created() {
+        console.log(this.$route.params)
+        // this.clicklike()
+    },
+    methods: {
+        //点赞
+        clicklike(id,cid,t,type) {
+            api.sendCommentLikeFn(id,cid,t,type).then((res) => {
+            })
+        },
+        clickItem(cid) {
+            // //评论的id
+            this.cid = cid
+            //歌曲id
+            this.id = this.$route.params.ids
+            //类型
+            this.type = this.$route.params.sonlistId
+            // if(this.cid)
+            if(localStorage.getItem('loginState')!==0){
+                // id,cid,t,type
+               if(this.cid&&this.id&&this.type!==''){
+                // this.clicklike(this.id,this.cid,this.t,this.type)
+               }
+            }else{
+              Toast('用户还没登录');
+              this.$router.push('/logoginbtn')
+            }
+        },
+    },
 }
 </script>
 

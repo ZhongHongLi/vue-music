@@ -33,6 +33,8 @@ import playList from '@/components/search/serachsonglist/components/playList'
 import user from '@/components/search/serachsonglist/components/user'
 import artist from '@/components/search/serachsonglist/components/artist'
 import userInfodetails from '@/components/mybuttonTab/components/userInfodetails'
+import player from '../base/player'
+import commentPages from '../components/page/components/commentpages'
 // slibarNav
 Vue.use(VueRouter)
 
@@ -107,6 +109,15 @@ const routes = [
         path:'/userinfodeatil',
         component:userInfodetails,
         name:'userinfodeatil'
+    },
+    {
+        path:'/player',
+        component:player
+    },
+    {
+        path:'/commentpages',
+        name:'commentpages',
+        component:commentPages
     }
 ]
 

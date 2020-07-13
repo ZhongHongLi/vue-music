@@ -88,8 +88,9 @@ export default {
             this.loding = false
         },
         showIdxPage(idx) {
+            console.log(idx);
             this.$router.push({ name: "albumpage", params: { idx: idx } })
-        },
+        }
     },
 }
 </script>

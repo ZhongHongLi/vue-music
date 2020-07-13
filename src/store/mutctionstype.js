@@ -11,3 +11,7 @@ export const SET_AUDIO_MODE = 'SET_AUDIO_MODE' // 设置当前的播放模式
 export const SET_LINK_PAGE = 'SET_LINK_PAGE' // 将load返回默认的true
 export const GET_USERINFO="GET_USERINFO" //获取用户详情
 export const LOGIN_STATE = 'LOGIN_STATE' // 登陆状态
+export const TIME_STATE='TIME_STATE'//记录播放时间
+export const RULELYRIC="RULELYRIC" //歌词存储起来
+export const CURRENT_INDEX="CURRENT_INDEX"//径路当前索引
+export const GETUSER_SONGURL='GETUSER_SONGURL' //获取url
